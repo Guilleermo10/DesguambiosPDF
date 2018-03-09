@@ -62,7 +62,7 @@ public class RestCotroller {
 	private static void addProducto(Document document, Producto producto) throws DocumentException {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("- Producto: "+producto.getLitProducto()+" Marca del Vehiculo: "+producto.getIdMarca()+" Direccion Del Desguace: "+producto.getDirEmpresa()+" Nombre Del Desguace: "+producto.getUsuario());
+		sb.append("[- Producto: "+producto.getLitProducto()+" -Marca del Vehiculo: "+producto.getIdMarca()+" -Direccion Del Desguace: "+producto.getDirEmpresa()+" -Nombre Del Desguace: "+producto.getUsuario()+"]");
 		Paragraph paragraph = new Paragraph(sb.toString());
 		document.add(paragraph);
 		
