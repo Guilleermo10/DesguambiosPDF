@@ -31,7 +31,7 @@ public class RestCotroller {
 	@Autowired
 	public ProductoRepository productoRepository;
 	
-	@PostMapping("/test")
+	@PostMapping("/pdfCreator")
 	public ResponseEntity<Map<String, Object>> test(@RequestBody ObjetoPeticion peticion) throws DocumentException{
 		HashMap<String, Object> map = new HashMap<>();
         map.put("pdf",generatePdf(peticion.getPiezaIds()).toByteArray());
@@ -44,7 +44,7 @@ public class RestCotroller {
 	        PdfWriter.getInstance(document, baos);
 	        document.open();
 	       // Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-	        Paragraph nameChunk = new Paragraph("Piezas");
+	        Paragraph nameChunk = new Paragraph("[ Piezas Favoritas ]");
 	        document.add(nameChunk);
 
 	        
@@ -61,7 +61,8 @@ public class RestCotroller {
 	
 	private static void addProducto(Document document, Producto producto) throws DocumentException {
 		StringBuilder sb = new StringBuilder();
-		sb.append(producto.getDirEmpresa()).append( producto.getUsuario());
+		
+		sb.append("- Producto: "+producto.getLitProducto()+" Marca del Vehiculo: "+producto.getIdMarca()+" Direccion Del Desguace: "+producto.getDirEmpresa()+" Nombre Del Desguace: "+producto.getUsuario());
 		Paragraph paragraph = new Paragraph(sb.toString());
 		document.add(paragraph);
 		
